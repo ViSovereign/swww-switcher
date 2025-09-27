@@ -87,3 +87,7 @@ Example Template file
 ## License
 
 MIT
+
+## Thank you
+
+I took code from https://github.com/lmm1ng/hyprpaper_switcher_ext and https://github.com/schromp/vicinae-extensions/tree/main/swww for this project. They helped me learn how to make an extension for Vicinae. Thank you!
