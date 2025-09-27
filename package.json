@@ -1,0 +1,144 @@
+{
+  "$schema": "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/extra/schemas/extension.json",
+  "name": "swww-switcher",
+  "title": "SWWW Switcher",
+  "description": "Switch your wallpaper with swww and call a color gen to update color pallets while you are at it",
+  "categories": [],
+  "license": "MIT",
+  "author": "sovereign",
+  "contributors": [],
+  "pastContributors": [],
+  "icon": "extension_icon.png",
+  "commands": [
+    {
+      "name": "wpgrid",
+      "title": "Wallpaper Grid",
+      "subtitle": "Wallpaper Grid",
+      "description": "Switch wallpapers using swww",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "wallpaperPath",
+      "title": "Wallpaper Path",
+      "description": "The path containing the wallpaper images",
+      "required": true,
+      "type": "textfield"
+    },
+    {
+      "name": "transitionType",
+      "title": "Transition Type",
+      "description": "The animation type of the transition",
+      "required": true,
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "None",
+          "value": "none"
+        },
+        {
+          "title": "Simple",
+          "value": "simple"
+        },
+        {
+          "title": "Fade",
+          "value": "fade"
+        },
+        {
+          "title": "Left",
+          "value": "left"
+        },
+        {
+          "title": "Right",
+          "value": "right"
+        },
+        {
+          "title": "Top",
+          "value": "top"
+        },
+        {
+          "title": "Bottom",
+          "value": "bottom"
+        },
+        {
+          "title": "Wipe",
+          "value": "wipe"
+        },
+        {
+          "title": "Wave",
+          "value": "wave"
+        },
+        {
+          "title": "Grow",
+          "value": "grow"
+        },
+        {
+          "title": "Center",
+          "value": "center"
+        },
+        {
+          "title": "Any",
+          "value": "any"
+        },
+        {
+          "title": "Outer",
+          "value": "outer"
+        },
+        {
+          "title": "Random",
+          "value": "random"
+        }
+      ]
+    },
+    {
+      "name": "colorGenTool",
+      "title": "Color Generator",
+      "description": "Which color generation tool do you use?",
+      "required": true,
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "None",
+          "value": "none"
+        },
+        {
+          "title": "Matugen",
+          "value": "matugen"
+        },
+        {
+          "title": "Pywal",
+          "value": "pywal"
+        },
+        {
+          "title": "Wpgtk",
+          "value": "wpgtk"
+        },
+        {
+          "title": "Schemer2",
+          "value": "schemer2"
+        },
+        {
+          "title": "Colorz",
+          "value": "colorz"
+        },
+        {
+          "title": "Haishoku",
+          "value": "haishoku"
+        }
+      ]
+    }
+  ],
+  "scripts": {
+    "build": "vici build",
+    "dev": "vici develop"
+  },
+  "dependencies": {
+    "@vicinae/api": "^0.8.2",
+    "image-size": "^2.0.2",
+    "jimp": "^1.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
