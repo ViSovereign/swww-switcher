@@ -30,6 +30,20 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
 - `Wallpaper grid` — Open the wallpaper browser and set a wallpaper
 - `Random Wallpaper` — Randomly apply a wallpaper
 
+## Extension Preferences
+
+ - Wallpaper Path
+ - SWWW Transition
+   - Default = `fade`
+ - Color Generator
+   - Default = `none`
+ - Grid Rows
+   - Default = `4`
+ - Toggle Vicinae on Selection
+   - Default = `true`
+ - Show Image Details
+   - Default = `true`
+
 ## Quick start (development)
 
 ```bash
@@ -101,10 +115,6 @@ $mainMod = SUPER
 bind = $mainMod CTRL, W, exec, vicinae vicinae://extensions/sovereign/swww-switcher/wpgrid
 bind = $mainMod SHIFT, W, exec, vicinae vicinae://extensions/sovereign/swww-switcher/wprandom
 ```
-
-## Future Features?
-
-- Menu to preview image, maybe with metadata too
 
 ## License
 

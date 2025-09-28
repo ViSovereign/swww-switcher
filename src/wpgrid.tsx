@@ -12,8 +12,14 @@ import { setWallpaper, toggleVicinae, callColorGen } from "./utils/hyprland";
 
 export default function DisplayGrid() {
   const path: string = getPreferenceValues().wallpaperPath;
-  const swwwTransition: string = getPreferenceValues().transitionType;
-  const colorGen: string = getPreferenceValues().colorGenTool;
+  const swwwTransition: string = getPreferenceValues().transitionType || "fade";
+  const colorGen: string = getPreferenceValues().colorGenTool || "none";
+  const gridRows = parseInt(getPreferenceValues().gridRows) || 4;
+  type Preferences = {
+    toggleVicinaeSetting: boolean;
+    showImageDetails: boolean;
+  };
+  const preferences = getPreferenceValues<Preferences>();
 
   const [wallpapersPath, setWallpapersPath] = useState<string | null>(null);
   const [wallpapers, setWallpapers] = useState<Image[]>([]);
@@ -37,7 +43,7 @@ export default function DisplayGrid() {
   return (
     <Grid
       searchBarPlaceholder="Filter wallpapers..."
-      columns={4}
+      columns={gridRows}
       aspectRatio="16/9"
       fit={Grid.Fit.Fill}
       isLoading={false}
@@ -50,11 +56,14 @@ export default function DisplayGrid() {
         }
       >
         {isLoading
-          ? Array.from({ length: 12 }).map((_, i) => (
+          ? Array.from({ length: gridRows * 3 }).map((_, i) => (
               <Grid.Item
                 key={i}
                 content={{ source: "loading.png" }}
                 title="Loading..."
+                subtitle={
+                  preferences.showImageDetails ? `420x245 • 3.1 KB` : undefined
+                }
               />
             ))
           : wallpapers.map((w) => (
@@ -62,13 +71,22 @@ export default function DisplayGrid() {
                 key={w.fullpath}
                 content={{ source: w.fullpath }}
                 title={w.name}
+                {...(preferences.showImageDetails && {
+                  subtitle: `${w.width}x${w.height} • ${w.size.toFixed(2)} MB`,
+                  accessories: [
+                    { text: `${w.width}x${w.height}` },
+                    { text: `${w.size.toFixed(2)} MB` },
+                  ],
+                })}
                 actions={
                   <ActionPanel>
                     <Action
                       title={`Set '${w.name}'`}
                       onAction={() => {
                         setWallpaper(w.fullpath, swwwTransition);
-                        toggleVicinae();
+                        if (preferences.toggleVicinaeSetting) {
+                          toggleVicinae();
+                        }
                         if (colorGen !== "none") {
                           callColorGen(w.fullpath, colorGen);
                         }

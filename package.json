@@ -34,10 +34,36 @@
       "type": "textfield"
     },
     {
+      "name": "gridRows",
+      "title": "Grid Rows",
+      "description": "How many rows do you want to see in the grid?",
+      "required": false,
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "3",
+          "value": "3"
+        },
+        {
+          "title": "4",
+          "value": "4"
+        },
+        {
+          "title": "5",
+          "value": "5"
+        },
+        {
+          "title": "6",
+          "value": "6"
+        }
+      ],
+      "default": "4"
+    },
+    {
       "name": "transitionType",
-      "title": "Transition Type",
-      "description": "The animation type of the transition",
-      "required": true,
+      "title": "SWWW Transition",
+      "description": "The animation type of the sww transition",
+      "required": false,
       "type": "dropdown",
       "data": [
         {
@@ -91,12 +117,9 @@
         {
           "title": "Outer",
           "value": "outer"
-        },
-        {
-          "title": "Random",
-          "value": "random"
         }
-      ]
+      ],
+      "default": "fade"
     },
     {
       "name": "colorGenTool",
@@ -133,7 +156,24 @@
           "title": "Haishoku",
           "value": "haishoku"
         }
-      ]
+      ],
+      "default": "none"
+    },
+    {
+      "label": "Toggle Vicinae",
+      "name": "toggleVicinaeSetting",
+      "description": "Set to true to toggle vicinae on wallpaper selection",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    },
+    {
+      "label": "Show Image Details",
+      "name": "showImageDetails",
+      "description": "Set to true to show image dimensions and size in MB.",
+      "type": "checkbox",
+      "required": false,
+      "default": true
     }
   ],
   "scripts": {
