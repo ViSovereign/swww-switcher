@@ -16,6 +16,13 @@
       "subtitle": "Wallpaper Grid",
       "description": "Switch wallpapers using swww",
       "mode": "view"
+    },
+    {
+      "name": "wprandom",
+      "title": "Random Wallpaper",
+      "subtitle": "Let RNG choose your style",
+      "description": "Switch wallpapers using swww",
+      "mode": "no-view"
     }
   ],
   "preferences": [

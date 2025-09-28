@@ -2,7 +2,9 @@
 
 # SWWW Switcher (Vicinae Extension)
 
-Choose wallpapers from a gird and apply with swww. Select from a color generator too!
+Pick a wallpaper from a grid and apply with swww with a transition of your choosing. You can even generate a color palette from the wallpaper!
+
+Dont feel like picking a wallpaper? Just run Random Wallpaper!
 
 <img src="assets/preview.png" alt="SWWW Switcher preview" width="500" />
 
@@ -10,12 +12,14 @@ Choose wallpapers from a gird and apply with swww. Select from a color generator
 
 - Choose a path in extension settings
 - Grid layout of images in the path
-- One-tap apply via `swww`
-- Add a swww transition
+- One-tap to set wallpaper via `swww`
+- Add a sweet swww transition
 - Add a color generator to run on the image
+- Set a random wallpaper
 
 ## Requirements
 
+- Vicinae version 0.12.2 or higher
 - Linux with Hyprland
 - swww `swww`
 - Color generator like `matugen`
@@ -23,7 +27,8 @@ Choose wallpapers from a gird and apply with swww. Select from a color generator
 
 ## Commands
 
-- `wallpapergrid` — Open the wallpaper browser and set a wallpaper
+- `Wallpaper grid` — Open the wallpaper browser and set a wallpaper
+- `Random Wallpaper` — Randomly apply a wallpaper
 
 ## Quick start (development)
 
@@ -53,9 +58,9 @@ This produces a production bundle that can be distributed/installed per Vicinae 
 
 ## Color Generator:
 
-- Color generator tools like `matugen` will need to be set up independently of this Extension.
+- Color generator tools like `matugen` will need to be set up independently of this Extension. I will provide my matugen files to get you started.
 
-Example Template file
+1. Save a template file where ever you'd like. Example below.
 ```
 {
   "version": "1.0.0",
@@ -77,12 +82,29 @@ Example Template file
   }
 }
 ```
+2. Call Template File from the matugen config.toml
+
+```
+[templates.vicinae]
+input_path = '~/.config/matugen/templates/vicinae.json'
+output_path = '/home/username/.config/vicinae/themes/matugen/matugen.json'
+post_hook = 'vicinae vicinae://theme/set/matugen'
+```
+3. Note the post hook. That's how you get Vicinae to apply the new theme.
+
+## Add this extension to your Hyprland config
+
+This is how I have this added to my keybindings:
+
+```
+$mainMod = SUPER
+bind = $mainMod CTRL, W, exec, vicinae vicinae://extensions/sovereign/swww-switcher/wpgrid
+bind = $mainMod SHIFT, W, exec, vicinae vicinae://extensions/sovereign/swww-switcher/wprandom
+```
+
 ## Future Features?
 
-- Random transition on Select
 - Menu to preview image, maybe with metadata too
-- More then SWWW?
-- Maybe offer matugen config for Vicinae?
 
 ## License
 
