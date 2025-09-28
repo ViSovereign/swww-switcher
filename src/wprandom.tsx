@@ -5,6 +5,10 @@ import { setWallpaper, toggleVicinae, callColorGen } from "./utils/hyprland";
 export default async function RandomWallpaper() {
   const path: string = getPreferenceValues().wallpaperPath;
   const swwwTransition: string = getPreferenceValues().transitionType || "fade";
+  const swwwSteps: number =
+    parseInt(getPreferenceValues().transitionSteps) || 90;
+  const swwwDuration: number =
+    parseInt(getPreferenceValues().transitionDuration) || 3;
   const colorGen: string = getPreferenceValues().colorGenTool || "none";
   type Preferences = {
     toggleVicinaeSetting: boolean;
@@ -32,7 +36,12 @@ export default async function RandomWallpaper() {
     const randomIndex = Math.floor(Math.random() * wallpapers.length);
     const selectedWallpaper = wallpapers[randomIndex];
 
-    setWallpaper(selectedWallpaper.fullpath, swwwTransition);
+    setWallpaper(
+      selectedWallpaper.fullpath,
+      swwwTransition,
+      swwwSteps,
+      swwwDuration,
+    );
     if (preferences.toggleVicinaeSetting) {
       toggleVicinae();
     }

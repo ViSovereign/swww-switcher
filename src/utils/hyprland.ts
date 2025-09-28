@@ -1,7 +1,14 @@
 import { exec } from "child_process";
 
-export const setWallpaper = (path: string, transition: string): void => {
-  exec(`swww img ${path} -t ${transition}`);
+export const setWallpaper = (
+  path: string,
+  transition: string,
+  steps: number,
+  seconds: number,
+): void => {
+  exec(
+    `swww img ${path} -t ${transition} --transition-step ${steps} --transition-duration ${seconds}`,
+  );
 };
 
 export const callColorGen = (path: string, ColorGen: string): void => {

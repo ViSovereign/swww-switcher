@@ -61,7 +61,7 @@
     },
     {
       "name": "transitionType",
-      "title": "SWWW Transition",
+      "title": "SWWW Transition Type",
       "description": "The animation type of the sww transition",
       "required": false,
       "type": "dropdown",
@@ -117,9 +117,77 @@
         {
           "title": "Outer",
           "value": "outer"
+        },
+        {
+          "title": "Random",
+          "value": "random"
         }
       ],
-      "default": "fade"
+      "default": "random"
+    },
+    {
+      "name": "transitionDuration",
+      "title": "SWWW Transition Duration",
+      "description": "Duration of the swww transition in seconds",
+      "required": false,
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "Eight",
+          "value": "8"
+        },
+        {
+          "title": "Five",
+          "value": "5"
+        },
+        {
+          "title": "Three",
+          "value": "3"
+        },
+        {
+          "title": "Two",
+          "value": "2"
+        },
+        {
+          "title": "One",
+          "value": "1"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "name": "transitionStep",
+      "title": "SWWW Transition Step",
+      "description": "The amount of steps from old wallpaper RBG to new wallpaper RBG",
+      "required": false,
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "Slowest Possible",
+          "value": "1"
+        },
+        {
+          "title": "Slow",
+          "value": "45"
+        },
+        {
+          "title": "Default",
+          "value": "90"
+        },
+        {
+          "title": "Quick",
+          "value": "120"
+        },
+        {
+          "title": "Fast",
+          "value": "200"
+        },
+        {
+          "title": "Instant",
+          "value": "255"
+        }
+      ],
+      "default": "90"
     },
     {
       "name": "colorGenTool",

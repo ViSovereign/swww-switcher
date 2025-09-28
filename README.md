@@ -32,9 +32,15 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
 
 ## Extension Preferences
 
+<img src="assets/settings.png" alt="SWWW Switcher preview" width="500" />
+
  - Wallpaper Path
- - SWWW Transition
-   - Default = `fade`
+ - SWWW Transition Type
+    - Default = `random`
+ - SWWW Duration (In seconds)
+    - Default = `3`
+ - SWWW Transition Step
+   - Default = `90`
  - Color Generator
    - Default = `none`
  - Grid Rows
@@ -64,11 +70,11 @@ This produces a production bundle that can be distributed/installed per Vicinae 
 ## First Usage
 1. Launch `wallpaper grid`
 
-2. Set the path to your images, transition type and color generator.
-
-<img src="assets/settings.png" alt="SWWW Switcher preview" width="500" />
+2. Set the path to your images.
 
 3. Search or scroll, preview the image, then choose “Set” to apply it
+
+4. Change extension settings to suit your needs.
 
 ## Color Generator:
 

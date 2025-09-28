@@ -13,6 +13,10 @@ import { setWallpaper, toggleVicinae, callColorGen } from "./utils/hyprland";
 export default function DisplayGrid() {
   const path: string = getPreferenceValues().wallpaperPath;
   const swwwTransition: string = getPreferenceValues().transitionType || "fade";
+  const swwwSteps: number =
+    parseInt(getPreferenceValues().transitionSteps) || 90;
+  const swwwDuration: number =
+    parseInt(getPreferenceValues().transitionDuration) || 3;
   const colorGen: string = getPreferenceValues().colorGenTool || "none";
   const gridRows = parseInt(getPreferenceValues().gridRows) || 4;
   type Preferences = {
@@ -83,7 +87,12 @@ export default function DisplayGrid() {
                     <Action
                       title={`Set '${w.name}'`}
                       onAction={() => {
-                        setWallpaper(w.fullpath, swwwTransition);
+                        setWallpaper(
+                          w.fullpath,
+                          swwwTransition,
+                          swwwSteps,
+                          swwwDuration,
+                        );
                         if (preferences.toggleVicinaeSetting) {
                           toggleVicinae();
                         }
