@@ -51,7 +51,7 @@ This produces a production bundle that can be distributed/installed per Vicinae 
 
 3. Search or scroll, preview the image, then choose “Set” to apply it
 
-##Color Generator:
+## Color Generator:
 
 - Color generator tools like `matugen` will need to be set up independently of this Extension.
 
