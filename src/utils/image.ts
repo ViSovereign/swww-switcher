@@ -2,7 +2,7 @@ import { opendir, readdir, readFile, stat } from "fs/promises";
 import * as _path from "path";
 import { imageSize } from "image-size";
 
-const hyprpaperSupportedFormats = ["jpg", "jpeg", "png", "webp"];
+const hyprpaperSupportedFormats = ["jpg", "jpeg", "png", "webp", "gif"];
 
 export interface Image {
   name: string;

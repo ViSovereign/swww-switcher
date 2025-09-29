@@ -8,9 +8,16 @@ import {
   getPreferenceValues,
 } from "@vicinae/api";
 import { getImagesFromPath, Image } from "./utils/image";
-import { setWallpaper, toggleVicinae, callColorGen } from "./utils/hyprland";
+import { Monitor, getMonitors } from "./utils/monitor";
+import {
+  setWallpaper,
+  setWallpaperOnMonitor,
+  toggleVicinae,
+  callColorGen,
+} from "./utils/hyprland";
 
 export default function DisplayGrid() {
+  const [monitors, setMonitors] = useState<Monitor[]>([]);
   const path: string = getPreferenceValues().wallpaperPath;
   const swwwTransition: string = getPreferenceValues().transitionType || "fade";
   const swwwSteps: number =
@@ -30,6 +37,7 @@ export default function DisplayGrid() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    getMonitors().then(setMonitors);
     getImagesFromPath(path)
       .then((ws) => {
         setIsLoading(false);
@@ -84,23 +92,49 @@ export default function DisplayGrid() {
                 })}
                 actions={
                   <ActionPanel>
-                    <Action
-                      title={`Set '${w.name}'`}
-                      onAction={() => {
-                        setWallpaper(
-                          w.fullpath,
-                          swwwTransition,
-                          swwwSteps,
-                          swwwDuration,
-                        );
-                        if (preferences.toggleVicinaeSetting) {
-                          toggleVicinae();
-                        }
-                        if (colorGen !== "none") {
-                          callColorGen(w.fullpath, colorGen);
-                        }
-                      }}
-                    />
+                    <ActionPanel.Section title="Set on All Monitors">
+                      <Action
+                        title={`Set '${w.name}' on All`}
+                        onAction={() => {
+                          setWallpaper(
+                            w.fullpath,
+                            swwwTransition,
+                            swwwSteps,
+                            swwwDuration,
+                          );
+                          if (preferences.toggleVicinaeSetting) {
+                            toggleVicinae();
+                          }
+                          if (colorGen !== "none") {
+                            callColorGen(w.fullpath, colorGen);
+                          }
+                        }}
+                      />
+                    </ActionPanel.Section>
+
+                    <ActionPanel.Section title="Set on Specific Monitor">
+                      {monitors.map((monitor) => (
+                        <Action
+                          key={monitor.id}
+                          title={`Set on ${monitor.description}`}
+                          onAction={() => {
+                            setWallpaperOnMonitor(
+                              w.fullpath,
+                              monitor.name,
+                              swwwTransition,
+                              swwwSteps,
+                              swwwDuration,
+                            );
+                            if (preferences.toggleVicinaeSetting) {
+                              toggleVicinae();
+                            }
+                            if (colorGen !== "none") {
+                              callColorGen(w.fullpath, colorGen);
+                            }
+                          }}
+                        />
+                      ))}
+                    </ActionPanel.Section>
                   </ActionPanel>
                 }
               />

@@ -11,6 +11,21 @@ export const setWallpaper = (
   );
 };
 
+export function setWallpaperOnMonitor(
+  imagePath: string,
+  monitorName: string,
+  transition: string,
+  steps: string,
+  duration: string,
+) {
+  const command = `swww img "${imagePath}" --outputs "${monitorName}" --transition-type ${transition} --transition-step ${steps} --transition-duration ${duration}`;
+  exec(command, (error) => {
+    if (error) {
+      console.error(`Error setting wallpaper on ${monitorName}:`, error);
+    }
+  });
+}
+
 export const callColorGen = (path: string, ColorGen: string): void => {
   switch (ColorGen.toLowerCase()) {
     case "matugen":
