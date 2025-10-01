@@ -23,6 +23,13 @@
       "subtitle": "Let RNG choose your style",
       "description": "Switch wallpapers using swww",
       "mode": "no-view"
+    },
+    {
+      "name": "wpgridaurelle",
+      "title": "Wallpaper Grid for Aurelle",
+      "subtitle": "Choose a wallpaper from a grid to slice and dice",
+      "description": "Switch wallpapers using swww",
+      "mode": "view"
     }
   ],
   "preferences": [

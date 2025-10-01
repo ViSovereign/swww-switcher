@@ -1,6 +1,41 @@
 import { exec, execSync } from "child_process";
-
 import { showToast, Toast } from "@raycast/api";
+
+export function setAurelleWallpaper(path: string, apptoggle: boolean) {
+  try {
+    execSync(`WP="${path}"
+
+    if [ ! -f "$WP" ]; then
+        echo "Error: File '$WP' not found"
+        exit 1
+    fi
+
+    monitors=$(hyprctl monitors -j)
+    monitor_count=$(echo $monitors | jq 'length')
+
+    mkdir -p /tmp/wp
+    convert "$WP" -crop 50%x100% +repage /tmp/wp/split_%d.jpg
+
+    if [ $monitor_count -eq 2 ]; then
+        o1=$(echo $monitors | jq -r '.[0].name')
+        o2=$(echo $monitors | jq -r '.[1].name')
+
+        echo 'setting wallpaper for ' $o1
+        swww img --outputs $o1 /tmp/wp/split_0.jpg
+        echo 'setting wallpaper for ' $o2
+        swww img --outputs $o2 /tmp/wp/split_1.jpg
+    fi`);
+
+    if (apptoggle) {
+      toggleVicinae();
+    }
+
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
 
 export async function omniCommand(
   path: string,
