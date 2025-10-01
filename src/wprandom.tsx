@@ -1,6 +1,6 @@
 import { showToast, Toast, getPreferenceValues } from "@vicinae/api";
 import { getImagesFromPath, Image } from "./utils/image";
-import { setWallpaper, toggleVicinae, callColorGen } from "./utils/hyprland";
+import { omniCommand } from "./utils/hyprland";
 
 export default async function RandomWallpaper() {
   const path: string = getPreferenceValues().wallpaperPath;
@@ -36,18 +36,15 @@ export default async function RandomWallpaper() {
     const randomIndex = Math.floor(Math.random() * wallpapers.length);
     const selectedWallpaper = wallpapers[randomIndex];
 
-    setWallpaper(
+    omniCommand(
       selectedWallpaper.fullpath,
+      "ALL",
       swwwTransition,
       swwwSteps,
       swwwDuration,
+      preferences.toggleVicinaeSetting,
+      colorGen,
     );
-    if (preferences.toggleVicinaeSetting) {
-      toggleVicinae();
-    }
-    if (colorGen !== "none") {
-      callColorGen(selectedWallpaper.fullpath, colorGen);
-    }
 
     await showToast({
       title: `Choose '${selectedWallpaper.name}' as wallpaper`,

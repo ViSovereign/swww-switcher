@@ -10,7 +10,7 @@ import {
 import { getImagesFromPath, Image } from "./utils/image";
 import { Monitor, getMonitors } from "./utils/monitor";
 import {
-  setWallpaper,
+  omniCommand,
   setWallpaperOnMonitor,
   toggleVicinae,
   callColorGen,
@@ -96,18 +96,15 @@ export default function DisplayGrid() {
                       <Action
                         title={`Set '${w.name}' on All`}
                         onAction={() => {
-                          setWallpaper(
+                          omniCommand(
                             w.fullpath,
+                            "ALL",
                             swwwTransition,
                             swwwSteps,
                             swwwDuration,
+                            preferences.toggleVicinaeSetting,
+                            colorGen,
                           );
-                          if (preferences.toggleVicinaeSetting) {
-                            toggleVicinae();
-                          }
-                          if (colorGen !== "none") {
-                            callColorGen(w.fullpath, colorGen);
-                          }
                         }}
                       />
                     </ActionPanel.Section>
@@ -118,19 +115,15 @@ export default function DisplayGrid() {
                           key={monitor.id}
                           title={`Set on ${monitor.description}`}
                           onAction={() => {
-                            setWallpaperOnMonitor(
+                            omniCommand(
                               w.fullpath,
                               monitor.name,
                               swwwTransition,
                               swwwSteps,
                               swwwDuration,
+                              preferences.toggleVicinaeSetting,
+                              colorGen,
                             );
-                            if (preferences.toggleVicinaeSetting) {
-                              toggleVicinae();
-                            }
-                            if (colorGen !== "none") {
-                              callColorGen(w.fullpath, colorGen);
-                            }
                           }}
                         />
                       ))}
