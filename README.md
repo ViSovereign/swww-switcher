@@ -24,6 +24,7 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
 - [swww](https://github.com/LGFae/swww)
 - Images in one of: jpg, jpeg, png, webp, gif
 - Optional: Color generator like [matugen](https://github.com/InioX/matugen)
+- Optional: ImageMagick for splitting one images for multiple wallpapers
 
 ## Commands
 
