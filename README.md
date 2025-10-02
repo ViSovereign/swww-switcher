@@ -89,9 +89,6 @@ This produces a production bundle that can be distributed/installed per Vicinae 
 
 <img src="assets/split.png" alt="SWWW Switcher split images action" width="500" />
 
-- If you set `Left Monitor Name` and `Right Monitor Name` in the extension preferences, you can split the image in half.
-  - The names must be present in the `hyprctl monitors -j` array for the action to appear.
-
 ## Color Generator:
 
 - Color generator tools like `matugen` will need to be set up independently of this Extension. I will provide my matugen files to get you started.
