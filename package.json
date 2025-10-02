@@ -23,13 +23,6 @@
       "subtitle": "Let RNG choose your style",
       "description": "Switch wallpapers using swww",
       "mode": "no-view"
-    },
-    {
-      "name": "wpgridaurelle",
-      "title": "Wallpaper Grid for Aurelle",
-      "subtitle": "Choose a wallpaper from a grid to slice and dice",
-      "description": "Switch wallpapers using swww",
-      "mode": "view"
     }
   ],
   "preferences": [
@@ -249,6 +242,20 @@
       "type": "checkbox",
       "required": false,
       "default": true
+    },
+    {
+      "name": "leftMonitor",
+      "title": "Left Monitor Name",
+      "description": "The Name of the monitor that shows the left side of the image after being split",
+      "required": false,
+      "type": "textfield"
+    },
+    {
+      "name": "rightMonitor",
+      "title": "Right Monitor Name",
+      "description": "The Name of the monitor that shows the right side of the image after being split",
+      "required": false,
+      "type": "textfield"
     }
   ],
   "scripts": {

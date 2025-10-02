@@ -1,40 +1,15 @@
 import { exec, execSync } from "child_process";
 import { showToast, Toast } from "@raycast/api";
+import * as path from "node:path";
 
-export function setAurelleWallpaper(path: string, apptoggle: boolean) {
-  try {
-    execSync(`WP="${path}"
+async function runConvertSplit(imgpath: string) {
+  const outDir = "/tmp/wp";
+  const cmd = `mkdir -p "${outDir}" && convert "${imgpath}" -crop 50%x100% +repage "${outDir}/split_%d.jpg"`;
+  execSync(cmd);
 
-    if [ ! -f "$WP" ]; then
-        echo "Error: File '$WP' not found"
-        exit 1
-    fi
-
-    monitors=$(hyprctl monitors -j)
-    monitor_count=$(echo $monitors | jq 'length')
-
-    mkdir -p /tmp/wp
-    convert "$WP" -crop 50%x100% +repage /tmp/wp/split_%d.jpg
-
-    if [ $monitor_count -eq 2 ]; then
-        o1=$(echo $monitors | jq -r '.[0].name')
-        o2=$(echo $monitors | jq -r '.[1].name')
-
-        echo 'setting wallpaper for ' $o1
-        swww img --outputs $o1 /tmp/wp/split_0.jpg
-        echo 'setting wallpaper for ' $o2
-        swww img --outputs $o2 /tmp/wp/split_1.jpg
-    fi`);
-
-    if (apptoggle) {
-      toggleVicinae();
-    }
-
-    return true;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
+  return Array.from({ length: 2 }, (_, i) =>
+    path.join(outDir, `split_${i}.jpg`),
+  );
 }
 
 export async function omniCommand(
@@ -50,6 +25,26 @@ export async function omniCommand(
 
   if (monitor === "ALL") {
     success = await setWallpaper(path, transition, steps, duration);
+  } else if (monitor.includes("|")) {
+    const splitImages = await runConvertSplit(path);
+    const monitors = monitor.split("|");
+
+    const ok1 = await setWallpaperOnMonitor(
+      splitImages[0],
+      monitors[0],
+      transition,
+      steps,
+      duration,
+    );
+    const ok2 = await setWallpaperOnMonitor(
+      splitImages[1],
+      monitors[1],
+      transition,
+      steps,
+      duration,
+    );
+
+    success = ok1 && ok2;
   } else {
     success = await setWallpaperOnMonitor(
       path,

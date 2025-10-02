@@ -9,12 +9,7 @@ import {
 } from "@vicinae/api";
 import { getImagesFromPath, Image } from "./utils/image";
 import { Monitor, getMonitors } from "./utils/monitor";
-import {
-  omniCommand,
-  setWallpaperOnMonitor,
-  toggleVicinae,
-  callColorGen,
-} from "./utils/hyprland";
+import { omniCommand, setAurelleWallpaper } from "./utils/hyprland";
 
 export default function DisplayGrid() {
   const [monitors, setMonitors] = useState<Monitor[]>([]);
@@ -31,10 +26,14 @@ export default function DisplayGrid() {
     showImageDetails: boolean;
   };
   const preferences = getPreferenceValues<Preferences>();
+  const leftMonitorName: string = getPreferenceValues().leftMonitor;
+  const rightMonitorName: string = getPreferenceValues().rightMonitor;
 
   const [wallpapersPath, setWallpapersPath] = useState<string | null>(null);
   const [wallpapers, setWallpapers] = useState<Image[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const monitorNames = monitors.map((m) => m.name);
 
   useEffect(() => {
     getMonitors().then(setMonitors);
@@ -109,11 +108,31 @@ export default function DisplayGrid() {
                       />
                     </ActionPanel.Section>
 
+                    <ActionPanel.Section title="Split on Monitors">
+                      {monitorNames.includes(leftMonitorName) &&
+                        monitorNames.includes(rightMonitorName) && (
+                          <Action
+                            title={`Split wallpaper ${leftMonitorName} | ${rightMonitorName}`}
+                            onAction={() => {
+                              omniCommand(
+                                w.fullpath,
+                                `${leftMonitorName}|${rightMonitorName}`,
+                                swwwTransition,
+                                swwwSteps,
+                                swwwDuration,
+                                preferences.toggleVicinaeSetting,
+                                colorGen,
+                              );
+                            }}
+                          />
+                        )}
+                    </ActionPanel.Section>
+
                     <ActionPanel.Section title="Set on Specific Monitor">
                       {monitors.map((monitor) => (
                         <Action
                           key={monitor.id}
-                          title={`Set on ${monitor.description}`}
+                          title={`Set on ${monitor.name}`}
                           onAction={() => {
                             omniCommand(
                               w.fullpath,
