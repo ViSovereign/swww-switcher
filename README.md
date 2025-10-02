@@ -32,7 +32,7 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
 
 ## Extension Preferences
 
-<img src="assets/settings.png" alt="SWWW Switcher preview" width="500" />
+<img src="assets/settings.png" alt="SWWW Switcher Settings" width="500" />
 
  - Wallpaper Path
  - SWWW Transition Type
@@ -49,6 +49,10 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
    - Default = `true`
  - Show Image Details
    - Default = `true`
+ - leftmonitor
+   - Default = `unset`
+ - rightmonitor
+   - Default = `unset`
 
 ## Quick start (development)
 
@@ -75,6 +79,13 @@ This produces a production bundle that can be distributed/installed per Vicinae 
 3. Search or scroll for that perfect image, then choose “Set” to apply it to all monitors. Go into the menu to apply it to only one monitor.
 
 4. Change extension settings to suit your needs.
+
+## Split One Wallpaper for Two Monitors
+
+<img src="assets/split.png" alt="SWWW Switcher split images" width="500" />
+
+- If you set `Left Monitor Name` and `Right Monitor Name` in the extension preferences, you can split the image in half.
+  - The names must be present in the `hyprctl monitors -j` array for the action to appear.
 
 ## Color Generator:
 
