@@ -3,8 +3,8 @@ import { showToast, Toast } from "@raycast/api";
 import * as path from "node:path";
 
 async function runConvertSplit(imgpath: string) {
-  const outDir = "/tmp/wp";
-  const cmd = `mkdir -p "${outDir}" && convert "${imgpath}" -crop 50%x100% +repage "${outDir}/split_%d.jpg"`;
+  const outDir = ".cache/vicinae/swww-switcher";
+  const cmd = `mkdir -p "${outDir}" && magick "${imgpath}" -crop 50%x100% +repage "${outDir}/split_%d.jpg"`;
   execSync(cmd);
 
   return Array.from({ length: 2 }, (_, i) =>

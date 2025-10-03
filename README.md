@@ -15,7 +15,7 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
 - One-tap to set wallpaper via `swww` on all or a single monitor
 - Add a sweet swww transition, configure the duration and steps too
 - Add a color generator to run on the image
-- Set a random wallpaper
+- Set a random wallpaper.
 
 ## Requirements
 
@@ -89,6 +89,10 @@ This produces a production bundle that can be distributed/installed per Vicinae 
 <img src="assets/split2.png" alt="SWWW Switcher split image settings" width="500" />
 
 <img src="assets/split.png" alt="SWWW Switcher split images action" width="500" />
+
+Did you know?
+
+Random Wallpaper can apply one image to multiple monitors if you set `Left Monitor Name` and `Right Monitor Name` in the extension preferences, and the ratio betwen the width and height of the image is greater then 1.8!
 
 ## Color Generator:
 
