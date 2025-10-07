@@ -168,6 +168,10 @@ export const callColorGen = async (
       command = `python -c "from haishoku.haishoku import Haishoku; Haishoku.loadHaishoku('${path}')"`;
       break;
 
+    case "wallust":
+      command = `wallust run ${path}`;
+      break;
+
     default:
       console.warn(`Unknown color generator: ${ColorGen}.`);
       return false;
@@ -212,6 +216,10 @@ export const callColorGen2 = (path: string, ColorGen: string): void => {
       exec(
         `python -c "from haishoku.haishoku import Haishoku; Haishoku.loadHaishoku('${path}')"`,
       );
+      break;
+
+    case "wallust":
+      exec(`wallust run ${path}`);
       break;
 
     default:
