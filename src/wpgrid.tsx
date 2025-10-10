@@ -5,11 +5,12 @@ import {
   Grid,
   showToast,
   Toast,
+  Icon,
   getPreferenceValues,
 } from "@vicinae/api";
 import { getImagesFromPath, Image } from "./utils/image";
 import { Monitor, getMonitors } from "./utils/monitor";
-import { omniCommand, setAurelleWallpaper } from "./utils/hyprland";
+import { omniCommand } from "./utils/hyprland";
 
 export default function DisplayGrid() {
   const [monitors, setMonitors] = useState<Monitor[]>([]);
@@ -22,7 +23,12 @@ export default function DisplayGrid() {
   const colorGen: string = getPreferenceValues().colorGenTool || "none";
   const gridRows = parseInt(getPreferenceValues().gridRows) || 4;
   type Preferences = {
-    toggleVicinaeSetting: boolean;
+    toggleVicinaeSetting: boolList;
+    Detail;
+    showToast;
+    Toast;
+    Icon;
+    getPreferenceValuesean;
     showImageDetails: boolean;
   };
   const preferences = getPreferenceValues<Preferences>();
@@ -70,7 +76,7 @@ export default function DisplayGrid() {
           ? Array.from({ length: gridRows * 3 }).map((_, i) => (
               <Grid.Item
                 key={i}
-                content={{ source: "loading.png" }}
+                content={{ source: "loading.gif" }}
                 title="Loading..."
                 subtitle={
                   preferences.showImageDetails ? `420x245 • 3.1 KB` : undefined
@@ -94,6 +100,7 @@ export default function DisplayGrid() {
                     <ActionPanel.Section title="Set on All Monitors">
                       <Action
                         title={`Set '${w.name}' on All`}
+                        icon={Icon.Image}
                         onAction={() => {
                           omniCommand(
                             w.fullpath,
@@ -113,6 +120,7 @@ export default function DisplayGrid() {
                         monitorNames.includes(rightMonitorName) && (
                           <Action
                             title={`Split wallpaper ${leftMonitorName} | ${rightMonitorName}`}
+                            icon={Icon.ArrowsExpand}
                             onAction={() => {
                               omniCommand(
                                 w.fullpath,
@@ -133,6 +141,7 @@ export default function DisplayGrid() {
                         <Action
                           key={monitor.id}
                           title={`Set on ${monitor.name}`}
+                          icon={Icon.Monitor}
                           onAction={() => {
                             omniCommand(
                               w.fullpath,

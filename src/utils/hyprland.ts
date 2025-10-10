@@ -1,5 +1,5 @@
 import { exec, execSync } from "child_process";
-import { showToast, Toast } from "@raycast/api";
+import { showToast, Toast } from "@vicinae/api";
 import * as path from "node:path";
 
 async function runConvertSplit(imgpath: string) {
