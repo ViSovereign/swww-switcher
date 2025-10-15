@@ -248,6 +248,52 @@
       "default": true
     },
     {
+      "name": "postProduction",
+      "title": "Imagemagick Post-Production",
+      "description": "Would you like to process your selected image?",
+      "required": false,
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "No",
+          "value": "no"
+        },
+        {
+          "title": "Gray Scale",
+          "value": "grayscale"
+        },
+        {
+          "title": "Gray Scale + Blur",
+          "value": "grayscaleblur"
+        },
+        {
+          "title": "Gray Scale + Heavy Blur",
+          "value": "grayscaleheavyblur"
+        },
+        {
+          "title": "Blur",
+          "value": "lightblur"
+        },
+        {
+          "title": "Blur + Darken",
+          "value": "lightblurdarken"
+        },
+        {
+          "title": "Heavy Blur",
+          "value": "heavyblur"
+        },
+        {
+          "title": "Heavy Blur + Darken",
+          "value": "heavyblurdarken"
+        },
+        {
+          "title": "Negate",
+          "value": "negate"
+        }
+      ],
+      "default": "no"
+    },
+    {
       "name": "leftMonitor",
       "title": "Left Monitor Name",
       "description": "The Name of the monitor that shows the left side of the image after being split",

@@ -23,15 +23,11 @@ export default function DisplayGrid() {
   const colorGen: string = getPreferenceValues().colorGenTool || "none";
   const gridRows = parseInt(getPreferenceValues().gridRows) || 4;
   type Preferences = {
-    toggleVicinaeSetting: boolList;
-    Detail;
-    showToast;
-    Toast;
-    Icon;
-    getPreferenceValuesean;
+    toggleVicinaeSetting: boolean;
     showImageDetails: boolean;
   };
   const preferences = getPreferenceValues<Preferences>();
+  const postProduction = getPreferenceValues().postProduction;
   const leftMonitorName: string = getPreferenceValues().leftMonitor;
   const rightMonitorName: string = getPreferenceValues().rightMonitor;
 
@@ -110,6 +106,7 @@ export default function DisplayGrid() {
                             swwwDuration,
                             preferences.toggleVicinaeSetting,
                             colorGen,
+                            postProduction,
                           );
                         }}
                       />
@@ -130,6 +127,7 @@ export default function DisplayGrid() {
                                 swwwDuration,
                                 preferences.toggleVicinaeSetting,
                                 colorGen,
+                                postProduction,
                               );
                             }}
                           />
@@ -151,6 +149,7 @@ export default function DisplayGrid() {
                               swwwDuration,
                               preferences.toggleVicinaeSetting,
                               colorGen,
+                              postProduction,
                             );
                           }}
                         />

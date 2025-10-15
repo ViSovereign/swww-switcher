@@ -1,16 +1,7 @@
 import { exec, execSync } from "child_process";
 import { showToast, Toast } from "@vicinae/api";
-import * as path from "node:path";
-
-async function runConvertSplit(imgpath: string) {
-  const outDir = ".cache/vicinae/swww-switcher";
-  const cmd = `mkdir -p "${outDir}" && magick "${imgpath}" -crop 50%x100% +repage "${outDir}/split_%d.jpg"`;
-  execSync(cmd);
-
-  return Array.from({ length: 2 }, (_, i) =>
-    path.join(outDir, `split_${i}.jpg`),
-  );
-}
+import { runConvertSplit, runPostProduction } from "./imagemagik";
+import { callColorGen } from "./colorgen";
 
 export async function omniCommand(
   path: string,
@@ -20,6 +11,7 @@ export async function omniCommand(
   duration: number,
   apptoggle: boolean,
   colorApp: string,
+  postProduction: string,
 ) {
   let success: boolean;
 
@@ -65,12 +57,27 @@ export async function omniCommand(
       if (colorGenSuccess) {
         showToast({
           style: Toast.Style.Success,
-          title: "Wallpaper set, colors generated!",
+          title: "Wall set, colors generated!",
         });
       } else {
         showToast({
           style: Toast.Style.Failure,
           title: "Color generation failed",
+        });
+      }
+    }
+    if (postProduction !== "no") {
+      const postProdSuccess = await runPostProduction(path, postProduction);
+
+      if (postProdSuccess) {
+        showToast({
+          style: Toast.Style.Success,
+          title: "Wall set, colors generated, post proc done!",
+        });
+      } else {
+        showToast({
+          style: Toast.Style.Failure,
+          title: "Post processing failed",
         });
       }
     }
@@ -136,98 +143,6 @@ export const setWallpaperOnMonitor = async (
     return false;
   }
 };
-
-export const callColorGen = async (
-  path: string,
-  ColorGen: string,
-): Promise<boolean> => {
-  let command: string;
-
-  switch (ColorGen.toLowerCase()) {
-    case "matugen":
-      command = `matugen image ${path}`;
-      break;
-
-    case "pywal":
-      command = `wal -i ${path}`;
-      break;
-
-    case "wpgtk":
-      command = `wpg -s ${path}`;
-      break;
-
-    case "schemer2":
-      command = `schemer2 ${path}`;
-      break;
-
-    case "colorz":
-      command = `colorz ${path}`;
-      break;
-
-    case "haishoku":
-      command = `python -c "from haishoku.haishoku import Haishoku; Haishoku.loadHaishoku('${path}')"`;
-      break;
-
-    case "wallust":
-      command = `wallust run ${path}`;
-      break;
-
-    default:
-      console.warn(`Unknown color generator: ${ColorGen}.`);
-      return false;
-  }
-
-  // Execute the command and check for errors
-  return await new Promise<boolean>((resolve) => {
-    exec(command, (error) => {
-      if (error) {
-        console.error(`Color generator failed: ${error.message}`);
-        resolve(false);
-      } else {
-        resolve(true);
-      }
-    });
-  });
-};
-
-export const callColorGen2 = (path: string, ColorGen: string): void => {
-  switch (ColorGen.toLowerCase()) {
-    case "matugen":
-      exec(`matugen image ${path}`);
-      break;
-
-    case "pywal":
-      exec(`wal -i ${path}`);
-      break;
-
-    case "wpgtk":
-      exec(`wpg -s ${path}`);
-      break;
-
-    case "schemer2":
-      exec(`schemer2 ${path}`);
-      break;
-
-    case "colorz":
-      exec(`colorz ${path}`);
-      break;
-
-    case "haishoku":
-      exec(
-        `python -c "from haishoku.haishoku import Haishoku; Haishoku.loadHaishoku('${path}')"`,
-      );
-      break;
-
-    case "wallust":
-      exec(`wallust run ${path}`);
-      break;
-
-    default:
-      console.warn(`Unknown color generator: ${ColorGen}.`);
-      break;
-  }
-};
-
 export const toggleVicinae = (): void => {
   exec(`vicinae vicinae://toggle`);
 };
