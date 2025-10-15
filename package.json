@@ -223,6 +223,10 @@
         {
           "title": "Haishoku",
           "value": "haishoku"
+        },
+        {
+          "title": "Wallust",
+          "value": "wallust"
         }
       ],
       "default": "none"
