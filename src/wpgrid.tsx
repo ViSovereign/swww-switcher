@@ -79,7 +79,7 @@ export default function DisplayGrid() {
                 content={{ source: "loading.gif" }}
                 title="Loading..."
                 subtitle={
-                  preferences.showImageDetails ? `420x245 • 3.1 KB` : undefined
+                  preferences.showImageDetails ? `480x270 • 79.5 KB` : undefined
                 }
               />
             ))

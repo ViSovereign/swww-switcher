@@ -13,6 +13,7 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
 - Choose a path in extension settings
 - Grid layout of images in the path
 - One-tap to set wallpaper via `swww` on all or a single monitor
+  - Split one images into multiple wallpapers
 - Add a sweet swww transition, configure the duration and steps too
 - Add a color generator to run on the image
 - Set a random wallpaper.
@@ -146,4 +147,6 @@ MIT
 
 ## Thank you
 
-I took code from [lmm1ng](https://github.com/lmm1ng/hyprpaper_switcher_ext) and [schromp](https://github.com/schromp/vicinae-extensions/tree/main/swww) for this project. They helped me learn how to make an extension for Vicinae. Thank you!
+1. I took code from [lmm1ng](https://github.com/lmm1ng/hyprpaper_switcher_ext) and [schromp](https://github.com/schromp/vicinae-extensions/tree/main/swww) for this project. They helped me learn how to make an extension for Vicinae. Thank you!
+
+2. Shout out to [RodsonMatos](https://github.com/RodsonMatos) for adding wallust support to the Extension! Thank you!
