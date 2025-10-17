@@ -17,6 +17,7 @@ export default async function RandomWallpaper() {
   const preferences = getPreferenceValues<Preferences>();
   const leftMonitorName: string = getPreferenceValues().leftMonitor;
   const rightMonitorName: string = getPreferenceValues().rightMonitor;
+  const postProduction = getPreferenceValues().postProduction;
 
   try {
     await showToast({
@@ -55,6 +56,7 @@ export default async function RandomWallpaper() {
         swwwDuration,
         preferences.toggleVicinaeSetting,
         colorGen,
+        postProduction,
       );
     } else {
       omniCommand(
@@ -65,6 +67,7 @@ export default async function RandomWallpaper() {
         swwwDuration,
         preferences.toggleVicinaeSetting,
         colorGen,
+        postProduction,
       );
     }
 
