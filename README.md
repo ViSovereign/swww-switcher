@@ -132,38 +132,149 @@ Use a tool to pull colors out of a wallpaper for themeing purposes. Below is a l
 
 ### I use Matugen, BTW
 
-- Color generator tools like `matugen` will need to be set up independently of this Extension. I will provide my matugen files to get you started.
+- Color generator tools like [Matugen](https://github.com/matgen/matgen) will need to be set up independently of this Extension. I will provide my matugen files to get you started.
+
+Base of this theme provided by the amazing [Sridou](https://github.com/Sridou). Check the [offical documentation](https://docs.vicinae.com/theming/matugen) for more!
 
 1. Save a template file where ever you'd like. Example below.
 ```
-{
-  "version": "1.0.0",
-  "appearance": "dark",
-  "icon": "./matugen.png",
-  "name": "Matugen",
-  "description": "Changes based on wallpaper.",
-  "palette": {
-    "background": "{{colors.background.default.hex}}",
-    "foreground": "{{colors.on_background.default.hex}}",
-    "blue": "#268BD2",
-    "green": "#859900",
-    "magenta": "#D33682",
-    "orange": "#CB4B16",
-    "purple": "#6C71C4",
-    "red": "{{colors.error.default.hex}}",
-    "yellow": "#B58900",
-    "cyan": "#2AA198"
-  }
-}
+# Vicinae Matugen Theme for swww switcher
+
+[meta]
+name = "Matugen"
+description = "Changes color when the wallpaper does. It's a follower. {{mode}} variant"
+variant = "{{mode}}"
+icon = "icons/matugen.png"
+
+# ============================================================================
+# Core Colors
+# ============================================================================
+
+[colors.core]
+accent = "{{colors.primary.default.hex}}"
+accent_foreground = "{{colors.background.default.hex}}"
+background = "{{colors.background.default.hex}}"
+foreground = "{{colors.on_background.default.hex}}"
+secondary_background = "{{colors.surface_container_low.default.hex}}"
+border = "{{colors.outline_variant.default.hex}}"
+
+# ============================================================================
+# Window-Specific Colors
+# ============================================================================
+
+[colors.main_window]
+border = "{{colors.outline_variant.default.hex}}"
+
+[colors.settings_window]
+border = "{{colors.outline.default.hex}}"
+
+# ============================================================================
+# Accent Colors
+# ============================================================================
+
+[colors.accents]
+blue = "{{colors.primary.default.hex}}"
+green = "{{colors.tertiary.default.hex}}"
+magenta = "{{colors.secondary.default.hex}}"
+orange = "{{colors.error.default.hex}}"
+red = "{{colors.error.default.hex}}"
+yellow = "{{colors.tertiary.default.hex}}"
+cyan = "{{colors.primary.default.hex}}"
+purple = "{{colors.secondary.default.hex}}"
+
+# ============================================================================
+# Text Colors
+# ============================================================================
+
+[colors.text]
+default = "{{colors.on_surface.default.hex}}"
+muted = "{{colors.on_surface_variant.default.hex}}"
+danger = "{{colors.error.default.hex}}"
+success = "{{colors.tertiary.default.hex}}"
+placeholder = "{{colors.on_surface_variant.default.hex}}"
+
+[colors.text.selection]
+background = "{{colors.primary.default.hex}}"
+foreground = "{{colors.on_primary.default.hex}}"
+
+[colors.text.links]
+default = "{{colors.primary.default.hex}}"
+visited = "{{colors.secondary.default.hex}}"
+
+# ============================================================================
+# Input Fields
+# ============================================================================
+
+[colors.input]
+border = "{{colors.outline.default.hex}}"
+border_focus = "{{colors.primary.default.hex}}"
+border_error = "{{colors.error.default.hex}}"
+
+# ============================================================================
+# Buttons
+# ============================================================================
+
+[colors.button.primary]
+background = "{{colors.on_secondary.default.hex}}"
+foreground = "{{colors.background.default.hex}}"
+
+[colors.button.primary.hover]
+background = { name = "{{colors.surface_container_highest.default.hex}}", opacity = 0.85 }
+
+[colors.button.primary.focus]
+outline = "colors.core.accent"
+
+# ============================================================================
+# Lists
+# ============================================================================
+
+[colors.list.item.hover]
+background = { name = "{{colors.on_secondary.default.hex}}", opacity = 0.25  }
+foreground = "{{colors.background.default.hex}}"
+
+[colors.list.item.selection]
+background = { name = "{{colors.on_primary_container.default.hex}}", opacity = 0.5 }
+foreground = "{{colors.background.default.hex}}"
+secondary_background = "{{colors.on_secondary.default.hex}}"
+secondary_foreground = "{{colors.background.default.hex}}"
+
+# ============================================================================
+# Grid Items
+# ============================================================================
+
+[colors.grid.item]
+background = "{{colors.background.default.hex}}"
+
+[colors.grid.item.hover]
+outline = { name = "{{colors.primary.default.hex}}", opacity = 0.6 }
+
+[colors.grid.item.selection]
+outline = { name = "{{colors.primary.default.hex}}", opacity = 0.9 }
+
+# ============================================================================
+# Scrollbars
+# ============================================================================
+
+[colors.scrollbars]
+background = { name = "{{colors.on_surface.default.hex}}", opacity = 0.2 }
+
+# ============================================================================
+# Loading Indicators
+# ============================================================================
+
+[colors.loading]
+bar = "{{colors.primary.default.hex}}"
+spinner = "{{colors.primary.default.hex}}"
+
 ```
 
 2. Call Template File from the matugen config.toml
 
 ```
 [templates.vicinae]
-input_path = '~/.config/matugen/templates/vicinae.json'
-output_path = '/home/username/.config/vicinae/themes/matugen/matugen.json'
-post_hook = 'vicinae vicinae://theme/set/matugen'
+input_path = '~/.config/matugen/templates/vicinae.toml'
+output_path = '~/.local/share/vicinae/themes/matugen.toml'
+post_hook = 'vicinae theme set matugen'
 ```
 3. Note the post hook. That's how you get Vicinae to apply the new theme.
 
