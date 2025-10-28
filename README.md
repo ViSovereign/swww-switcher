@@ -24,7 +24,8 @@ Dont feel like picking a wallpaper? Just run Random Wallpaper!
 - Linux with Hyprland
 - [vicinae](https://github.com/vicinaehq/vicinae) v0.12.2 or higher
 - [swww](https://github.com/LGFae/swww)
-- Images in one of: jpg, jpeg, png, webp, gif
+- Images in one of: *jpg*, *jpeg*, *png*, *webp*, *gif*
+- Optional: Install `qt6-imageformats` to see thumbnails for webp images.
 - Optional: Color generator like [matugen](https://github.com/InioX/matugen)
 - Optional: ImageMagick for splitting one image in half for two wallpapers or for post processing like blur
 

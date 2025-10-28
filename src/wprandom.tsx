@@ -42,7 +42,7 @@ export default async function RandomWallpaper() {
     const randomIndex = Math.floor(Math.random() * wallpapers.length);
     const selectedWallpaper = wallpapers[randomIndex];
     const isWide = selectedWallpaper.width / selectedWallpaper.height;
-
+    console.time("🧮 ${isWide} wallpaper ratio");
     if (
       isWide > 1.8 &&
       monitorNames.includes(leftMonitorName) &&
